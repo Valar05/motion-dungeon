@@ -134,3 +134,58 @@ None registered.
 - Review status: 2D fallback visually inspected. Full WebGL watchdown is blocked
   in the current review browser because WebGL is disabled. Human acceptance and
   canon promotion remain pending.
+
+
+## Motion Dungeon v9 — Gemini Beard Slap Proof
+
+Capability truth:
+
+- Requested: make a proof in Motion Lab using the beard-slap GIF.
+- Implemented: the source-locked Randi/Adam slap runs at its native 7.20 seconds,
+  followed by a 1.70-second exact-final-frame hold for the second voice line.
+  No source frame was retimed, interpolated, regenerated, or shortened.
+- Tested: exact checkpoint source passed lint (zero errors; two existing unused
+  helper warnings), production build, rendered-HTML test, motion-manifest
+  validation, WAV probe, SHA-256 verification, and patch-integrity checks.
+- Deployed: Sites version 9 from checkpoint commit
+  `6eb0865279cda029873e5f08d98ef2b39272b06d`.
+- Callable: https://motion-dungeon.dclarke1005.chatgpt.site
+- Delivered: editor source, dependency lock, both beard-slap expression atlases,
+  transcript, manifest, Gemini proof receipt, and verified WAV were promoted to
+  this public repository through Home Center and readback is required below.
+- Accepted: **accept with quarantine** as a technical proof. The cloud review
+  browser displayed the responsive fallback and control surface but had no
+  WebGL; native audio input was unavailable. Full picture-and-sound watchdown
+  and Drew's artistic acceptance remain pending.
+
+Voice and timing:
+
+- Randi / Kore, 0.35–2.67: “Bless his heart.”
+- Adam / Gacrux, 4.37–8.45: “The beard remembers its post.”
+- Gemini model: `gemini-3.1-flash-tts-preview`.
+- WAV: 8.90 seconds, 24 kHz mono PCM16, 427,244 bytes.
+- WAV SHA-256:
+  `73cd429587c366b1a8f35adbc1f110e7d3ba9f0055afaf92930804586d3b3cc4`.
+- Durable audio:
+  https://drive.google.com/file/d/1HZ2D0GOVAVebEG8J727InICh-b4vj3fA/view
+- Home Center readback: four chunks reconstructed to the same byte count and
+  SHA-256. The proof receipt records both segment checkpoints, exact dialogue,
+  provider and resolved voices, manifest receipt, and the direct authorized
+  execution lane.
+
+Motion ruling:
+
+- The world stays restrained until Randi spends motion on one slap.
+- Voice frames the act before and after; it does not drive or disguise the
+  contact.
+- The final-frame hold is deliberate dialogue accommodation, not smoothed or
+  invented character motion.
+- Gemini and designed Foley remain independently toggleable and are included in
+  local H.264/AAC export when enabled.
+- WebGL or source reconstruction failure remains fail-closed; the exact fallback
+  is descriptive, and synchronized play/export remain unavailable rather than
+  fabricating proof.
+
+Review verdict: **Accept with quarantine**. The source lane, timing, technical
+audio, public deployment, accessibility text, and recovery evidence are proved.
+Artistic voice and full runtime motion acceptance remain explicitly unclaimed.
