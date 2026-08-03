@@ -1,0 +1,25 @@
+Randi vs Adam — Hyperbolic Beard Slap
+
+Dialogue:
+
+0:00.35–0:02.67 — Randi, with composed Southern mischief: “Bless his heart.”
+
+0:04.37–0:08.45 — Adam, recovering with dry restraint: “The beard remembers its post.”
+
+0:00–0:01 — Randi watches Adam from the left. Adam faces forward on the right. A restrained magenta-and-gold dungeon field holds still behind them.
+
+0:01–0:03 — Randi's expression changes from appraisal to delighted commitment. An oversized procedural open hand loads from her side as the label changes from READ to LOAD.
+
+0:03 — The hand crosses the gap and lands once against Adam's left cheek and beard. Adam's expression snaps to surprise and then visible damage. Gold and magenta rings erupt from the contact point; the lower half of his portrait ripples like displaced beard bristles. The label reads SLAP, then PAY.
+
+0:03–0:05 — The hand withdraws. Adam's portrait recoils, rings decay, and the beard-wave field settles instead of looping.
+
+0:05–0:07 — Randi returns to a satisfied, composed expression. Adam re-centers with a battered grin. The label reads RETURN.
+
+0:07–0:09 — The exact final frame holds for Adam's final words. The accepted 7.20-second slap performance is not retimed or interpolated.
+
+Meaningful sound: sleeve load, accelerating hand, a single palm crack, cheek-and-beard body, a brief absurd judgment bell, bristle recoil, dungeon tail, and a quiet return tone.
+
+Speech source: Home Center audio.render using gemini-3.1-flash-tts-preview. Randi uses Kore; Adam uses Gacrux. The verified 24 kHz mono PCM16 WAV is mixed into local MP4 exports when Gemini voices are enabled.
+
+The strike is slapstick and metaphorical. No blood or graphic injury is shown.
