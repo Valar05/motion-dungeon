@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "signal-bloom",
+  "name": "Signal Bloom",
+  "status": "candidate",
+  "inherits": "motion-dungeon@0.1",
+  "durationSeconds": 6,
+  "fps": 30,
+  "palette": {
+    "color": "#70a7ff",
+    "accent": "#c8f2ff"
+  },
+  "parameters": {
+    "intensity": 78,
+    "speedPercent": 100,
+    "scanlines": true
+  },
+  "phases": ["LOAD", "SLIDE", "CATCH", "DRIVE", "BRAKE", "EXTRACT"],
+  "note": "cold pulse / clean loop"
+}
