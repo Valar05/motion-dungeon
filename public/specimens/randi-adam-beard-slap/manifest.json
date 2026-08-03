@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "project": {
+    "id": "randi-adam-hyperbolic-beard-slap",
+    "implementation_lane": "Motion Dungeon",
+    "explicit_tool_requirement": "Motion Dungeon",
+    "toolchain": ["Three.js 0.179.1", "WebGL/GLSL", "Web Audio", "WebCodecs", "mp4-muxer 5.2.2", "Home Center audio.render", "gemini-3.1-flash-tts-preview"],
+    "width": 1280,
+    "height": 720,
+    "fps": 30,
+    "duration_seconds": 8.9,
+    "color_space": "sRGB display / H.264 browser export",
+    "entry_command": "npm run dev"
+  },
+  "assets": [
+    {
+      "id": "randi-expression-sheet",
+      "path": "randi-expression-sheet.png",
+      "sha256": "b358ff0f61cbee25379360fef43bd8585140818198fbbe14abff18b3a46894e8",
+      "kind": "locked-character-performance-atlas",
+      "approval": "user-supplied candidate",
+      "native_dimensions": [1536, 1229],
+      "grid": [5, 4],
+      "preserve_native_timing": true
+    },
+    {
+      "id": "adam-expression-sheet",
+      "path": "adam-expression-sheet.png",
+      "sha256": "6b41aa817c66f8ccd034349fca58e80c98aca87a91f6e077b57e7add58a57152",
+      "kind": "locked-character-performance-atlas",
+      "approval": "user-supplied candidate",
+      "native_dimensions": [1536, 1229],
+      "grid": [5, 4],
+      "preserve_native_timing": true
+    },
+    {
+      "id": "beard-slap-gemini-dialogue",
+      "path": "randi-adam-beard-slap-gemini-v1.wav",
+      "sha256": "73cd429587c366b1a8f35adbc1f110e7d3ba9f0055afaf92930804586d3b3cc4",
+      "kind": "verified-directed-dialogue",
+      "approval": "technical-proof-candidate; human artistic review pending",
+      "native_sample_rate": 24000,
+      "native_channels": 1,
+      "native_duration_seconds": 8.9,
+      "provider": "gemini",
+      "model": "gemini-3.1-flash-tts-preview",
+      "voices": ["Kore", "Gacrux"],
+      "preserve_native_timing": true
+    }
+  ],
+  "shots": [
+    {
+      "id": "SHOT_010",
+      "start_seconds": 0,
+      "end_seconds": 3.0,
+      "dramatic_job": "Randi reads the offense and loads one decisive open-hand strike",
+      "motion_carriers": ["locked facial states", "procedural hand", "sound"],
+      "asset_ids": ["randi-expression-sheet", "adam-expression-sheet"],
+      "accessibility": {"visual_information_needing_description": true}
+    },
+    {
+      "id": "SHOT_020",
+      "start_seconds": 3.0,
+      "end_seconds": 8.9,
+      "dramatic_job": "The strike spends the scene on Adam's beard, then both performers return to agency while Adam's final line resolves over the unchanged last frame",
+      "motion_carriers": ["contact", "beard recoil shader", "impact rings", "finite Foley", "locked facial states", "directed Gemini dialogue", "final-frame hold"],
+      "asset_ids": ["randi-expression-sheet", "adam-expression-sheet", "beard-slap-gemini-dialogue"],
+      "accessibility": {"visual_information_needing_description": true}
+    }
+  ],
+  "evidence": {
+    "renderer_source": "app/page.tsx",
+    "dependency_lock": "package-lock.json",
+    "master_render": "browser-local MP4 export",
+    "review_render": "deployed Motion Dungeon scene",
+    "captions": "timed HTML captions in app/page.tsx; transcript in descriptive-transcript.txt",
+    "audio_description": "descriptive-transcript.txt",
+    "provider_receipt": "gemini-proof.json",
+    "watchdown_status": "not-run"
+  }
+}
