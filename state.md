@@ -9,8 +9,8 @@ Human Risk: MINIMAL
 Authority: Drew Clarke
 State Owner: Adam
 Authoritative Home: https://github.com/Valar05/motion-dungeon/blob/main/state.md
-Updated: 2026-08-02
-License: MIT for original source; third-party assets and dependencies retain their own licenses
+Updated: 2026-08-03
+License: AGPL-3.0-or-later for software; CC BY-SA 4.0 for original scene manifests and documentation; third-party materials retain their own licenses
 
 ## Commission
 
@@ -45,6 +45,9 @@ remain a local export target with easy sharing, not the source of truth.
 - Rendering occurs locally in the browser; no render farm is the default lane.
 - Children inherit the engine but own portable manifests and independent names.
 - Public source must remain forkable.
+- Commercial use is allowed, but future software releases use AGPL-3.0-or-later so distributed modifications remain copyleft and modified network services must offer their Corresponding Source.
+- Drew Clarke attribution and Appropriate Legal Notices remain visible in the interactive product surface.
+- Original scene manifests and documentation use CC BY-SA 4.0; project identity and endorsement are governed separately.
 
 ## Working Set
 
@@ -84,6 +87,8 @@ unknown fields, and keeps sharing and local export functional.
   authenticated durable backend.
 
 ## Recent Delta
+
+- 2026-08-03: Drew selected source + credit. Replaced MIT for future releases with AGPL-3.0-or-later for software, CC BY-SA 4.0 for original scene manifests/documentation, a project identity policy, and visible in-product attribution. Earlier MIT grants remain valid.
 
 - Recovered the exact deployed version 3 source from Sites.
 - Created the public GitHub repository.
