@@ -392,7 +392,7 @@ export default function Home() {
           <div className="render-info"><span>LOCAL OUTPUT</span><strong>MP4 · H.264</strong><small>No upload. No render farm.<br/>The browser encodes it here.</small></div>
         </aside>
       </section>
-      <footer><span className="status-dot"/>{status}<kbd>SPACE</kbd><span>play / pause</span></footer>
+      <footer><span className="status-dot"/>{status}<span className="legal"><a href="https://github.com/Valar05/motion-dungeon/blob/main/NOTICE.md">© 2026 Drew Clarke</a><span aria-hidden="true"> · </span><a href="https://github.com/Valar05/motion-dungeon">Source / AGPL</a></span><kbd>SPACE</kbd><span>play / pause</span></footer>
     </main>
   );
 }
