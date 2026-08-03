@@ -98,3 +98,34 @@ unknown fields, and keeps sharing and local export functional.
 ## ChatGPT Library Assets
 
 None registered.
+
+## Motion Dungeon v5 — Complete Readback
+
+- Deployed: Sites version 5, source version
+  `appgprj_6a6fe6095fac819198afe94918813883~appgver_ccfffbe30fc081918574504a2e3db2ec`,
+  deployment `appgdep_6a70040203dc8191b5b07f4e8e5d9d55`, source commit
+  `9f918115348fbfbc651cc3d715de62e5dd68bbd5`.
+- Added source-locked candidate scene **Adam to Eve — Complete Readback**:
+  600 × 600, 28 frames, 35.07 seconds, 5,168,209 bytes, SHA-256
+  `d76348726431fd47bca56f3fc6381388023572ef868342cbebff671a5d35d5a1`.
+- Preserves native per-frame timing without interpolation.
+- Processing stack: Worley cellular veins, four-octave FBM domain warp, seeded
+  grain, fine scan, and two authored harmonic pulses. Text-heavy cards receive
+  reduced processing; reduced-motion preference lowers it further.
+- Audio stack: browser-synthesized Foley and formants with no borrowed sources;
+  browser-local H.264/AAC export when authoritative frame decode and encoders are
+  available.
+- Vocalize: device `speechSynthesis` preview only; never silently included in
+  export.
+- Decoder: deterministic `gifuct-js` frame reconstruction. When WebGL or frame
+  reconstruction is unavailable, the site shows the exact GIF fallback and
+  disables synchronized playback/export controls.
+- Cloud speech: two Cartesia attempts remain quarantined because requested and
+  returned voice identities disagreed. Neither is used.
+- Speech-lane ruling: Gemini 2.5 Flash Preview TTS primary; Azure Speech stable
+  quota fallback; Kokoro local drafting; Cartesia reserved for verified final
+  voice work.
+- Validation: lint, build, test, and motion-manifest validation passed.
+- Review status: 2D fallback visually inspected. Full WebGL watchdown is blocked
+  in the current review browser because WebGL is disabled. Human acceptance and
+  canon promotion remain pending.
