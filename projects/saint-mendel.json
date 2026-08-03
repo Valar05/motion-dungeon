@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "saint-mendel",
+  "name": "Saint Mendel",
+  "status": "candidate",
+  "inherits": "motion-dungeon@0.1",
+  "durationSeconds": 6,
+  "fps": 30,
+  "palette": {
+    "color": "#d4ff56",
+    "accent": "#fff1a8"
+  },
+  "parameters": {
+    "intensity": 78,
+    "speedPercent": 100,
+    "scanlines": true
+  },
+  "phases": ["LOAD", "SLIDE", "CATCH", "DRIVE", "BRAKE", "EXTRACT"],
+  "note": "spore / heat / revelation"
+}
