@@ -1,0 +1,52 @@
+{
+  "status": "technical-proof-candidate",
+  "human_artistic_acceptance": "pending",
+  "request_id": "motion-dungeon-beard-slap-gemini-20260803-v1",
+  "provider": "gemini",
+  "model": "gemini-3.1-flash-tts-preview",
+  "runtime_boundary": "ChatGPT -> Home Center MCP -> audio.render -> Gemini API -> deterministic PCM16 processor -> verified durable artifact",
+  "excluded_lanes": {
+    "command_center": true,
+    "codex_worker": true,
+    "openai_api": true,
+    "github_actions_renderer": true,
+    "termux_runtime": true
+  },
+  "segments": [
+    {
+      "speaker": "Randi",
+      "voice": "Kore",
+      "text": "[mischievously] Bless his heart.",
+      "duration_seconds": 2.32,
+      "checkpoint_bytes": 111404,
+      "checkpoint_sha256": "6a25b7a86d9e8da13c9bbb0d05ac8e91e779711b665b13c9af2d32a866e5ab6e"
+    },
+    {
+      "speaker": "Adam",
+      "voice": "Gacrux",
+      "text": "[tired] The beard remembers its post.",
+      "duration_seconds": 4.08,
+      "checkpoint_bytes": 195884,
+      "checkpoint_sha256": "24b5cb7ccae718c9a9328969b4abe7ca467bd26a4030b15e7f430777526fa333"
+    }
+  ],
+  "output": {
+    "path": "randi-adam-beard-slap-gemini-v1.wav",
+    "duration_seconds": 8.9,
+    "sample_rate": 24000,
+    "channels": 1,
+    "encoding": "PCM16 WAV",
+    "byte_count": 427244,
+    "sha256": "73cd429587c366b1a8f35adbc1f110e7d3ba9f0055afaf92930804586d3b3cc4",
+    "readback_byte_count": 427244,
+    "readback_sha256": "73cd429587c366b1a8f35adbc1f110e7d3ba9f0055afaf92930804586d3b3cc4",
+    "clipping_count": 0,
+    "silent": false
+  },
+  "drive": {
+    "file_id": "1HZ2D0GOVAVebEG8J727InICh-b4vj3fA",
+    "web_view": "https://drive.google.com/file/d/1HZ2D0GOVAVebEG8J727InICh-b4vj3fA/view?usp=drivesdk"
+  },
+  "manifest_file_id": "1iM9o60dOXSNFXCrcqew4fPjWtM5n9Zt2",
+  "home_center_revision": "homecentermcp-00214-pow"
+}
