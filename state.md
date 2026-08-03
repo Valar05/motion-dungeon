@@ -32,8 +32,9 @@ remain a local export target with easy sharing, not the source of truth.
 - Deployed: Sites project `appgprj_6a6fe6095fac819198afe94918813883`,
   version 3, at https://motion-dungeon.dclarke1005.chatgpt.site.
 - Callable: public browser URL is live.
-- Delivered: GitHub and Home Center delivery require independent readback after
-  this state is published.
+- Delivered: public GitHub source and the Home Center project hub survived
+  readback on 2026-08-02. The hub contains the state pointer, Children index,
+  three child rooms, and three child project records.
 - Accepted: the architectural direction was explicitly commissioned; the visual
   editor and child scenes remain candidate work until Drew accepts them.
 
@@ -66,6 +67,8 @@ unknown fields, and keeps sharing and local export functional.
 
 - Live site: https://motion-dungeon.dclarke1005.chatgpt.site
 - GitHub: https://github.com/Valar05/motion-dungeon
+- Home Center project hub:
+  https://drive.google.com/drive/folders/1PYHXkNIX7imDcOGPzWv-b4hRSaKZ8I-m
 - Sites project: `appgprj_6a6fe6095fac819198afe94918813883`
 - Live version: 3
 - Live source commit before repository promotion:
@@ -87,6 +90,10 @@ unknown fields, and keeps sharing and local export functional.
 - Established three independently named child scene manifests.
 - Established a mixed-project contract: this repository file is authoritative;
   Home Center is the navigation and continuity mirror.
+- Verified 51 repository files through Home Center GitHub publication, then read
+  back this state, the README, and all three child manifests.
+- Verified the Home Center project recursively: 9 descendants, including three
+  child folders and their independently readable project records.
 
 ## ChatGPT Library Assets
 
