@@ -13,7 +13,7 @@ button { color:inherit; }
 h1 { margin:0; font-size:14px; letter-spacing:.03em; }
 .brand p { margin:3px 0 0; color:#77746e; font:10px var(--font-geist-mono); }
 .header-actions { display:flex; gap:8px; }
-.button { min-height:38px; padding:0 14px; border:1px solid #302f33; background:#151518; border-radius:5px; font-size:12px; cursor:pointer; }
+.button { min-height:38px; padding:0 14px; display:inline-flex; align-items:center; justify-content:center; border:1px solid #302f33; color:inherit; background:#151518; border-radius:5px; font-size:12px; text-decoration:none; cursor:pointer; }
 .button:hover { background:#201f23; border-color:#49484d; }
 .button.primary { color:#120804; background:#ff6635; border-color:#ff794e; font-weight:750; box-shadow:0 0 20px #ff5f2e2c; }
 .button:disabled { opacity:.65; cursor:wait; }
