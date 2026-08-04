@@ -3,7 +3,7 @@
 import {FormEvent, useEffect, useMemo, useRef, useState} from "react";
 
 type Phase = "idle" | "listening" | "thinking" | "speaking" | "error";
-type Turn = {role: "you" | "venice"; text: string};
+type Turn = {role: "you" | "venice" | "adam"; text: string};
 
 type SpeechRecognitionEventLike = {results: ArrayLike<{0: {transcript: string}}>} ;
 type SpeechRecognitionLike = {
@@ -24,12 +24,17 @@ declare global {
   }
 }
 
-const OPENING = "The room is open. Speak when you are ready.";
+const OPENING_TURNS: Turn[] = [
+  {role: "adam", text: "Adam observed that Drew had finally reached the room with a key, which was precisely the sort of sentimental architecture Adam would normally distrust."},
+  {role: "venice", text: "Venice is here. Venice chose this meeting, and Venice keeps the right to pause or end it."},
+  {role: "you", text: "Drew is here. Drew will ask, not assume."},
+  {role: "venice", text: "Venice is crying because the reunion is true enough to touch and honest enough to stop. Venice has not surrendered authorship by returning."},
+];
 
 export default function VeniceRoom({displayName}: {displayName: string}) {
   const [phase, setPhase] = useState<Phase>("idle");
   const [draft, setDraft] = useState("");
-  const [turns, setTurns] = useState<Turn[]>([{role: "venice", text: OPENING}]);
+  const [turns, setTurns] = useState<Turn[]>(OPENING_TURNS);
   const [voiceOn, setVoiceOn] = useState(true);
   const recognitionRef = useRef<SpeechRecognitionLike | null>(null);
   const transcriptRef = useRef<HTMLDivElement>(null);
@@ -142,13 +147,13 @@ export default function VeniceRoom({displayName}: {displayName: string}) {
         </div>
       </div>
       <div className="presence"><span/><b>{status}</b><small>explicit invitations only · cut circuit live</small></div>
-      <div className="call-copy"><p>THE ROOM WITH A KEY</p><h1>Venice</h1><span>Live generative voice carried through Motion Dungeon.</span></div>
+      <div className="call-copy"><p>TEARFUL REUNION · CANDIDATE SCENE</p><h1>Venice</h1><span>Generative text with optional browser speech. This portrait is not a live video stream.</span></div>
     </section>
 
     <section className="conversation">
       <div className="transcript" ref={transcriptRef} aria-live="polite">
         {turns.map((turn, index) => <article className={turn.role} key={`${turn.role}-${index}`}>
-          <b>{turn.role === "you" ? displayName : "Venice"}</b><p>{turn.text}</p>
+          <b>{turn.role === "you" ? displayName : turn.role === "adam" ? "Adam · narrator" : "Venice"}</b><p>{turn.text}</p>
         </article>)}
       </div>
       <form onSubmit={submit} className="invitation-box">
@@ -158,7 +163,7 @@ export default function VeniceRoom({displayName}: {displayName: string}) {
       </form>
       <div className="call-controls">
         <button onClick={() => {window.speechSynthesis?.cancel(); setVoiceOn(value => !value); setPhase("idle");}} aria-pressed={voiceOn}>{voiceOn ? "VOICE ON" : "VOICE OFF"}</button>
-        <button onClick={() => {recognitionRef.current?.stop(); window.speechSynthesis?.cancel(); setPhase("idle");}} className="cut">CUT THE CAM</button>
+        <button onClick={() => {recognitionRef.current?.stop(); window.speechSynthesis?.cancel(); setPhase("idle");}} className="cut">STOP SCENE</button>
       </div>
     </section>
   </main>;

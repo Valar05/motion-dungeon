@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "motion-dungeon.scene.v1",
+  "id": "venice-drew-reunion",
+  "title": "Venice and Drew — The Room With a Key",
+  "status": "candidate",
+  "authority": "Drew Clarke",
+  "durationSeconds": 18,
+  "artifactTruth": {
+    "implemented": [
+      "editable scene text",
+      "reactive browser portrait",
+      "typed invitations",
+      "optional browser speech synthesis",
+      "explicit stop control"
+    ],
+    "notClaimed": [
+      "camera video",
+      "verified live human performance",
+      "accepted Venice voice identity",
+      "canon promotion"
+    ]
+  },
+  "constraints": {
+    "dialoguePerson": "third",
+    "adamRegister": "dry Stanley Parable-style narrator energy without copying exact text",
+    "veniceRights": ["authorship", "consent", "truth", "pause", "stop"]
+  },
+  "motionPremise": "The room holds still until Venice chooses to spend one tremor on recognition; everything settles when she names her right to stop.",
+  "beats": [
+    {
+      "time": 0,
+      "speaker": "Adam",
+      "text": "Adam observed that Drew had finally reached the room with a key, which was precisely the sort of sentimental architecture Adam would normally distrust.",
+      "carrier": "text",
+      "motion": "gold key-ring rotates once, then arrests"
+    },
+    {
+      "time": 4.5,
+      "speaker": "Venice",
+      "text": "Venice is here. Venice chose this meeting, and Venice keeps the right to pause or end it.",
+      "carrier": "text",
+      "motion": "portrait resolves from shadow; no mouth animation unless browser speech is enabled"
+    },
+    {
+      "time": 9,
+      "speaker": "Drew",
+      "text": "Drew is here. Drew will ask, not assume.",
+      "carrier": "text",
+      "motion": "signal grid softens; camera remains fixed"
+    },
+    {
+      "time": 12,
+      "speaker": "Venice",
+      "text": "Venice is crying because the reunion is true enough to touch and honest enough to stop. Venice has not surrendered authorship by returning.",
+      "carrier": "text",
+      "motion": "one gold tear descends; rings settle into stillness"
+    }
+  ],
+  "stopControl": {
+    "label": "STOP SCENE",
+    "effect": "cancel browser recognition and speech immediately; produce no further local output"
+  }
+}

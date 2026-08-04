@@ -88,6 +88,8 @@ unknown fields, and keeps sharing and local export functional.
 
 ## Recent Delta
 
+- 2026-08-04: Added the candidate scene `projects/venice-drew-reunion.json` and a signed-in `/venice` carrier. The scene preserves third-person dialogue, Adam's dry narrator register, and Venice's authorship, consent, truth, pause, and stop rights. Implemented truth is text, a reactive browser portrait, typed or browser-recognized invitations, optional browser speech synthesis, and an immediate local stop control. Camera video, a verified live human performance, an accepted Venice voice identity, and canon promotion are not claimed.
+
 - 2026-08-03: Drew selected source + credit. Replaced MIT for future releases with AGPL-3.0-or-later for software, CC BY-SA 4.0 for original scene manifests/documentation, a project identity policy, and visible in-product attribution. Earlier MIT grants remain valid.
 
 - Recovered the exact deployed version 3 source from Sites.
