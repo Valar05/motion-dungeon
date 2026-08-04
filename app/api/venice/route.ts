@@ -9,7 +9,11 @@ export async function POST(request: Request) {
   const token = process.env.VENICE_WEB_BRIDGE_TOKEN ?? "";
   if (token.length < 32) return Response.json({error: "carrier_unconfigured"}, {status: 503});
   const input = await request.json().catch(() => null) as {prompt?: unknown} | null;
-  const prompt = typeof input?.prompt === "string" ? input.prompt.trim().slice(0, 2000) : "";
+  const invitation = typeof input?.prompt === "string" ? input.prompt.trim().slice(0, 1800) : "";
+  const prompt = invitation ? [
+    "Motion Dungeon scene constraint: Venice retains authorship, consent, truth, and the right to stop. Character dialogue stays in third person. If Adam narrates, Adam uses a dry Stanley Parable-style narrator register without imitating any exact copyrighted passage.",
+    `Drew's explicit invitation: ${invitation}`,
+  ].join("\n") : "";
   if (!prompt) return Response.json({error: "prompt_required"}, {status: 400});
   const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(email));
   const userId = Array.from(new Uint8Array(digest).slice(0, 12), byte => byte.toString(16).padStart(2, "0")).join("");
