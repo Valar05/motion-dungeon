@@ -1,5 +1,5 @@
 import type {Metadata} from "next";
-import ShermanLab from "./sherman-lab";
+import ShermanShell from "./sherman-shell";
 import "./sherman.css";
 
 export const metadata: Metadata = {
@@ -19,5 +19,5 @@ export const metadata: Metadata = {
 };
 
 export default function ShermanPage() {
-  return <ShermanLab/>;
+  return <ShermanShell/>;
 }

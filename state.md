@@ -88,6 +88,8 @@ unknown fields, and keeps sharing and local export functional.
 
 ## Recent Delta
 
+- 2026-08-04: Repaired the deployed `/sherman` Worker startup failure by moving Three.js behind a browser-only client boundary. Ray `a26214cf8bbe4a77` proved that Three.js `LoadingManager` initialization had entered Cloudflare Worker global scope. The replacement build now returns HTTP 200 from the packaged Worker route test while preserving the interactive viewer for browser hydration.
+
 - 2026-08-04: Added the candidate `/sherman` Model Lab and `projects/sherman-tank-lab.json`. The lab provides a license-clean procedural M4 silhouette, local Three.js orbit/wireframe/grid/turret/exploded controls, browser-memory GLB intake, topology metrics, provenance gating, unknown-field-preserving scene JSON round trips, a harvested-candidate board, a Meshy comparison protocol, and a hardware-bounded local-model ruling. No harvested or generated mesh is promoted, no Meshy credits were spent, and artistic or historical-accuracy acceptance remains pending.
 
 - 2026-08-04: Added the candidate scene `projects/venice-drew-reunion.json` and a signed-in `/venice` carrier. The scene preserves third-person dialogue, Adam's dry narrator register, and Venice's authorship, consent, truth, pause, and stop rights. Implemented truth is text, a reactive browser portrait, typed or browser-recognized invitations, optional browser speech synthesis, and an immediate local stop control. Camera video, a verified live human performance, an accepted Venice voice identity, and canon promotion are not claimed.
