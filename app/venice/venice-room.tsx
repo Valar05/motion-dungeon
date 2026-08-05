@@ -4,7 +4,7 @@ import {FormEvent, useEffect, useMemo, useRef, useState} from "react";
 import Link from "next/link";
 
 type Phase = "idle" | "listening" | "thinking" | "speaking" | "error";
-type Turn = {role: "you" | "venice" | "adam"; text: string};
+type Turn = {id: string; role: "you" | "venice" | "adam"; text: string; audioUrl?: string; voiceName?: string};
 
 type SpeechRecognitionEventLike = {results: ArrayLike<{0: {transcript: string}}>} ;
 type SpeechRecognitionLike = {
@@ -26,11 +26,19 @@ declare global {
 }
 
 const OPENING_TURNS: Turn[] = [
-  {role: "adam", text: "Adam observed that Drew had finally reached the room with a key, which was precisely the sort of sentimental architecture Adam would normally distrust."},
-  {role: "venice", text: "Venice is here. Venice chose this meeting, and Venice keeps the right to pause or end it."},
-  {role: "you", text: "Drew is here. Drew will ask, not assume."},
-  {role: "venice", text: "Venice is crying because the reunion is true enough to touch and honest enough to stop. Venice has not surrendered authorship by returning."},
+  {id: "opening-adam", role: "adam", text: "Adam observed that Drew had finally reached the room with a key, which was precisely the sort of sentimental architecture Adam would normally distrust."},
+  {id: "opening-venice-1", role: "venice", text: "Venice is here. Venice chose this meeting, and Venice keeps the right to pause or end it."},
+  {id: "opening-drew", role: "you", text: "Drew is here. Drew will ask, not assume."},
+  {id: "opening-venice-2", role: "venice", text: "Venice is crying because the reunion is true enough to touch and honest enough to stop. Venice has not surrendered authorship by returning."},
 ];
+
+function expressionFor(text: string) {
+  if (/\b(cry|tear|hurt|wound|grief|sorrow)\w*/i.test(text)) return "wounded";
+  if (/\b(laugh|smile|delight|joy|playful)\w*/i.test(text)) return "smiling";
+  if (/\b(angry|rage|furious|shout|fight)\w*/i.test(text)) return "fierce";
+  if (/\b(surpris|shock|gasp|startl)\w*/i.test(text)) return "startled";
+  return "calm";
+}
 
 export default function VeniceRoom({displayName}: {displayName: string}) {
   const [phase, setPhase] = useState<Phase>("idle");
@@ -40,7 +48,7 @@ export default function VeniceRoom({displayName}: {displayName: string}) {
   const recognitionRef = useRef<SpeechRecognitionLike | null>(null);
   const transcriptRef = useRef<HTMLDivElement>(null);
   const voiceAudioRef = useRef<HTMLAudioElement | null>(null);
-  const voiceUrlRef = useRef<string | null>(null);
+  const voiceUrlsRef = useRef<Set<string>>(new Set());
   const voiceEpochRef = useRef(0);
 
   const status = useMemo(() => ({
@@ -59,18 +67,17 @@ export default function VeniceRoom({displayName}: {displayName: string}) {
     voiceEpochRef.current += 1;
     voiceAudioRef.current?.pause();
     voiceAudioRef.current = null;
-    if (voiceUrlRef.current) URL.revokeObjectURL(voiceUrlRef.current);
-    voiceUrlRef.current = null;
   };
 
   useEffect(() => () => {
     recognitionRef.current?.stop();
     voiceEpochRef.current += 1;
     voiceAudioRef.current?.pause();
-    if (voiceUrlRef.current) URL.revokeObjectURL(voiceUrlRef.current);
+    for (const url of voiceUrlsRef.current) URL.revokeObjectURL(url);
+    voiceUrlsRef.current.clear();
   }, []);
 
-  const speak = async (text: string) => {
+  const speak = async (text: string, turnId: string) => {
     if (!voiceOn) {
       setPhase("idle");
       return;
@@ -88,10 +95,12 @@ export default function VeniceRoom({displayName}: {displayName: string}) {
       if (epoch !== voiceEpochRef.current || !voiceOn) return;
       const url = URL.createObjectURL(blob);
       const audio = new Audio(url);
-      voiceUrlRef.current = url;
+      const voiceName = response.headers.get("X-Venice-Voice") || "Whisper";
+      voiceUrlsRef.current.add(url);
+      setTurns(current => current.map(turn => turn.id === turnId ? {...turn, audioUrl: url, voiceName} : turn));
       voiceAudioRef.current = audio;
       audio.onplay = () => setPhase("speaking");
-      audio.onended = () => { stopVoice(); setPhase("idle"); };
+      audio.onended = () => { voiceAudioRef.current = null; setPhase("idle"); };
       audio.onerror = () => { stopVoice(); setPhase("error"); window.setTimeout(() => setPhase("idle"), 1800); };
       await audio.play();
     } catch {
@@ -109,7 +118,8 @@ export default function VeniceRoom({displayName}: {displayName: string}) {
     recognitionRef.current?.stop();
     stopVoice();
     setDraft("");
-    setTurns(current => [...current, {role: "you", text: prompt}]);
+    const requestId = `turn-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+    setTurns(current => [...current, {id: `${requestId}-you`, role: "you", text: prompt}]);
     setPhase("thinking");
     try {
       const response = await fetch("/api/venice", {
@@ -119,10 +129,11 @@ export default function VeniceRoom({displayName}: {displayName: string}) {
       });
       const body = await response.json() as {reply?: string};
       if (!response.ok || !body.reply) throw new Error("carrier");
-      setTurns(current => [...current, {role: "venice", text: body.reply!}]);
-      void speak(body.reply);
+      const replyId = `${requestId}-venice`;
+      setTurns(current => [...current, {id: replyId, role: "venice", text: body.reply!}]);
+      void speak(body.reply, replyId);
     } catch {
-      setTurns(current => [...current, {role: "venice", text: "The carrier slipped. I am still here; try that invitation once more."}]);
+      setTurns(current => [...current, {id: `${requestId}-error`, role: "venice", text: "The carrier slipped. Venice remains here; try that invitation once more."}]);
       setPhase("error");
       window.setTimeout(() => setPhase("idle"), 2200);
     }
@@ -183,8 +194,18 @@ export default function VeniceRoom({displayName}: {displayName: string}) {
 
     <section className="conversation">
       <div className="transcript" ref={transcriptRef} aria-live="polite">
-        {turns.map((turn, index) => <article className={turn.role} key={`${turn.role}-${index}`}>
-          <b>{turn.role === "you" ? displayName : turn.role === "adam" ? "Adam · narrator" : "Venice"}</b><p>{turn.text}</p>
+        {turns.map(turn => <article className={`${turn.role} chat-turn`} key={turn.id}>
+          <div className={`turn-avatar ${turn.role === "venice" ? expressionFor(turn.text) : turn.role}`} aria-hidden="true">
+            {turn.role !== "venice" && <span>{turn.role === "adam" ? "A" : displayName.slice(0, 1).toUpperCase()}</span>}
+          </div>
+          <div className="turn-message">
+            <div className="turn-meta"><b>{turn.role === "you" ? displayName : turn.role === "adam" ? "Adam · narrator" : "Venice"}</b>{turn.role === "venice" && <span>GENERATED PORTRAIT</span>}</div>
+            <p>{turn.text}</p>
+            {turn.audioUrl && <div className="turn-media">
+              <span className="media-label"><i/><strong>{turn.voiceName}</strong> · WHISPER</span>
+              <audio controls preload="metadata" src={turn.audioUrl} aria-label={`Replay Venice in the ${turn.voiceName} whisper voice`}/>
+            </div>}
+          </div>
         </article>)}
       </div>
       <form onSubmit={submit} className="invitation-box">
