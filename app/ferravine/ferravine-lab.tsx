@@ -139,18 +139,23 @@ export default function FerravineLab() {
               // eslint-disable-next-line @next/next/no-img-element -- exact candidate source inspection is the feature.
               <img className="master-inspect" src={SOURCE} alt=""/>
             ) : LAYERS.map((layer, index) => {
-              const revealStart = index === 0 ? 0 : .08 + index * .16;
-              const opacity = index === 0 ? 1 : clamp((peel - revealStart) / .25);
-              const shift = layer.closedShift * (1 - peel);
+              // The strata stay materially present throughout the shot. Each one
+              // travels from the shared assembled centerline to its authored band
+              // position; no crossfade is used to fake the vivisection.
+              const travelStart = index * .08;
+              const travel = Math.max(0, (peel - travelStart) / (1 - travelStart));
+              const shift = layer.closedShift * (1 - travel);
               return visible[layer.id] && (
                 <div
                   className={`anatomy-layer anatomy-${layer.id}`}
                   key={layer.id}
                   style={{
                     clipPath: `inset(${layer.top}% 0 ${100 - layer.bottom}% 0)`,
-                    opacity,
                     transform: `translate3d(0, ${shift}%, 0)`,
-                    zIndex: 10 + index,
+                    // Exterior has custody while the stack is assembled. The
+                    // reverse order also makes each underlying system emerge
+                    // from beneath it as the transforms separate.
+                    zIndex: 10 + (LAYERS.length - index),
                   }}
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element -- repeated exact source bands form the editable composition. */}
@@ -191,7 +196,7 @@ export default function FerravineLab() {
           <label className="ferravine-toggle"><span><strong>Inspect master</strong><small>bypass composition</small></span><input type="checkbox" checked={inspect} onChange={event => setInspect(event.target.checked)}/><i/></label>
           <div className="ferravine-truth">
             <span>TRUTH LOCK</span>
-            <p>The four bands are time-addressable crops from one generated master. They are not claimed as transparent alpha plates or accepted vehicle canon.</p>
+            <p>The four bands are time-addressable crops from one generated master. The peel is transform-only: every visible stratum remains opaque while it travels. They are not claimed as transparent alpha plates or accepted vehicle canon.</p>
           </div>
           <div className="ferravine-description">
             <span>ACCESSIBILITY</span>
