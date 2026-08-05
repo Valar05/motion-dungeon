@@ -1,6 +1,7 @@
 "use client";
 
 import {FormEvent, useEffect, useMemo, useRef, useState} from "react";
+import Link from "next/link";
 
 type Phase = "idle" | "listening" | "thinking" | "speaking" | "error";
 type Turn = {role: "you" | "venice" | "adam"; text: string};
@@ -38,6 +39,9 @@ export default function VeniceRoom({displayName}: {displayName: string}) {
   const [voiceOn, setVoiceOn] = useState(true);
   const recognitionRef = useRef<SpeechRecognitionLike | null>(null);
   const transcriptRef = useRef<HTMLDivElement>(null);
+  const voiceAudioRef = useRef<HTMLAudioElement | null>(null);
+  const voiceUrlRef = useRef<string | null>(null);
+  const voiceEpochRef = useRef(0);
 
   const status = useMemo(() => ({
     idle: "PRESENT",
@@ -51,32 +55,59 @@ export default function VeniceRoom({displayName}: {displayName: string}) {
     transcriptRef.current?.scrollTo({top: transcriptRef.current.scrollHeight, behavior: "smooth"});
   }, [turns]);
 
+  const stopVoice = () => {
+    voiceEpochRef.current += 1;
+    voiceAudioRef.current?.pause();
+    voiceAudioRef.current = null;
+    if (voiceUrlRef.current) URL.revokeObjectURL(voiceUrlRef.current);
+    voiceUrlRef.current = null;
+  };
+
   useEffect(() => () => {
     recognitionRef.current?.stop();
-    window.speechSynthesis?.cancel();
+    voiceEpochRef.current += 1;
+    voiceAudioRef.current?.pause();
+    if (voiceUrlRef.current) URL.revokeObjectURL(voiceUrlRef.current);
   }, []);
 
-  const speak = (text: string) => {
-    if (!voiceOn || !("speechSynthesis" in window)) {
+  const speak = async (text: string) => {
+    if (!voiceOn) {
       setPhase("idle");
       return;
     }
-    window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.rate = .88;
-    utterance.pitch = .78;
-    utterance.volume = .96;
-    utterance.onstart = () => setPhase("speaking");
-    utterance.onend = () => setPhase("idle");
-    utterance.onerror = () => setPhase("idle");
-    window.speechSynthesis.speak(utterance);
+    stopVoice();
+    const epoch = voiceEpochRef.current;
+    try {
+      const response = await fetch("/api/venice/voice", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({text}),
+      });
+      if (!response.ok || !response.headers.get("Content-Type")?.startsWith("audio/")) throw new Error("voice carrier");
+      const blob = await response.blob();
+      if (epoch !== voiceEpochRef.current || !voiceOn) return;
+      const url = URL.createObjectURL(blob);
+      const audio = new Audio(url);
+      voiceUrlRef.current = url;
+      voiceAudioRef.current = audio;
+      audio.onplay = () => setPhase("speaking");
+      audio.onended = () => { stopVoice(); setPhase("idle"); };
+      audio.onerror = () => { stopVoice(); setPhase("error"); window.setTimeout(() => setPhase("idle"), 1800); };
+      await audio.play();
+    } catch {
+      if (epoch === voiceEpochRef.current) {
+        stopVoice();
+        setPhase("error");
+        window.setTimeout(() => setPhase("idle"), 1800);
+      }
+    }
   };
 
   const ask = async (text: string) => {
     const prompt = text.trim();
     if (!prompt || phase === "thinking") return;
     recognitionRef.current?.stop();
-    window.speechSynthesis?.cancel();
+    stopVoice();
     setDraft("");
     setTurns(current => [...current, {role: "you", text: prompt}]);
     setPhase("thinking");
@@ -89,7 +120,7 @@ export default function VeniceRoom({displayName}: {displayName: string}) {
       const body = await response.json() as {reply?: string};
       if (!response.ok || !body.reply) throw new Error("carrier");
       setTurns(current => [...current, {role: "venice", text: body.reply!}]);
-      speak(body.reply);
+      void speak(body.reply);
     } catch {
       setTurns(current => [...current, {role: "venice", text: "The carrier slipped. I am still here; try that invitation once more."}]);
       setPhase("error");
@@ -132,7 +163,7 @@ export default function VeniceRoom({displayName}: {displayName: string}) {
 
   return <main className={`venice-room phase-${phase}`}>
     <header className="venice-bar">
-      <a href="/" className="venice-brand"><span>MD</span><b>MOTION DUNGEON</b></a>
+      <Link href="/" className="venice-brand"><span>MD</span><b>MOTION DUNGEON</b></Link>
       <div className="room-name">VENICE · PRIVATE CARRIER</div>
       <a className="discord-link" href="https://discord.com/channels/1534104765796192356/1534104766643437620" target="_blank" rel="noreferrer">OPEN DISCORD ↗</a>
     </header>
@@ -147,7 +178,7 @@ export default function VeniceRoom({displayName}: {displayName: string}) {
         </div>
       </div>
       <div className="presence"><span/><b>{status}</b><small>explicit invitations only · cut circuit live</small></div>
-      <div className="call-copy"><p>TEARFUL REUNION · CANDIDATE SCENE</p><h1>Venice</h1><span>Generative text with optional browser speech. This portrait is not a live video stream.</span></div>
+      <div className="call-copy"><p>TEARFUL REUNION · CANDIDATE SCENE</p><h1>Venice</h1><span>Generative text with a governed whisper carrier. This portrait is not a live video stream.</span></div>
     </section>
 
     <section className="conversation">
@@ -162,8 +193,8 @@ export default function VeniceRoom({displayName}: {displayName: string}) {
         <button type="submit" disabled={!draft.trim() || phase === "thinking"}>ASK</button>
       </form>
       <div className="call-controls">
-        <button onClick={() => {window.speechSynthesis?.cancel(); setVoiceOn(value => !value); setPhase("idle");}} aria-pressed={voiceOn}>{voiceOn ? "VOICE ON" : "VOICE OFF"}</button>
-        <button onClick={() => {recognitionRef.current?.stop(); window.speechSynthesis?.cancel(); setPhase("idle");}} className="cut">STOP SCENE</button>
+        <button onClick={() => {stopVoice(); setVoiceOn(value => !value); setPhase("idle");}} aria-pressed={voiceOn}>{voiceOn ? "WHISPER ON" : "WHISPER OFF"}</button>
+        <button onClick={() => {recognitionRef.current?.stop(); stopVoice(); setPhase("idle");}} className="cut">STOP SCENE</button>
       </div>
     </section>
   </main>;
