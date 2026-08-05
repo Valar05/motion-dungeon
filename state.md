@@ -88,6 +88,17 @@ unknown fields, and keeps sharing and local export functional.
 
 ## Recent Delta
 
+- 2026-08-05: Added the candidate `/ferravine` vivisection child scene from
+  `Ferravine_Layer_Peel_Master_v1.png` (1536 × 1024, SHA-256
+  `d286b050b3cf9a9ba19aca24c72945c34c78473a272ed6cdddd02e64ca5f9472`).
+  The ten-second browser timeline peels four time-addressable source bands:
+  living armor, tendon chassis, nerve lattice, and Highlander skeleton. Layer
+  visibility, peel spread, nerve pulse, labels, exact-master inspection,
+  keyboard/touch scrubbing, reduced-motion behavior, and a descriptive
+  transcript are implemented. The source remains one generated candidate
+  master, not transparent alpha plates or accepted Ferravine canon. Deployment,
+  full-speed watchdown, and Drew's visual acceptance remain separate gates.
+
 - 2026-08-04: Repaired the deployed `/sherman` Worker startup failure by moving Three.js behind a browser-only client boundary. Ray `a26214cf8bbe4a77` proved that Three.js `LoadingManager` initialization had entered Cloudflare Worker global scope. The replacement build now returns HTTP 200 from the packaged Worker route test while preserving the interactive viewer for browser hydration.
 
 - 2026-08-04: Added the candidate `/sherman` Model Lab and `projects/sherman-tank-lab.json`. The lab provides a license-clean procedural M4 silhouette, local Three.js orbit/wireframe/grid/turret/exploded controls, browser-memory GLB intake, topology metrics, provenance gating, unknown-field-preserving scene JSON round trips, a harvested-candidate board, a Meshy comparison protocol, and a hardware-bounded local-model ruling. No harvested or generated mesh is promoted, no Meshy credits were spent, and artistic or historical-accuracy acceptance remains pending.

@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "project": {
+    "id": "ferravine-layer-peel",
+    "implementation_lane": "codex-motion-graphics",
+    "explicit_tool_requirement": null,
+    "toolchain": ["React 19", "CSS compositing", "Sites browser runtime"],
+    "width": 1536,
+    "height": 1024,
+    "fps": 30,
+    "duration_seconds": 10,
+    "color_space": "sRGB source / browser managed",
+    "entry_command": "npm run dev"
+  },
+  "assets": [
+    {
+      "id": "ferravine-layer-peel-master-v1",
+      "path": "public/specimens/ferravine-layer-peel/Ferravine_Layer_Peel_Master_v1.png",
+      "sha256": "d286b050b3cf9a9ba19aca24c72945c34c78473a272ed6cdddd02e64ca5f9472",
+      "kind": "generated-still-atlas",
+      "approval": "candidate-unreviewed",
+      "native_fps": 0,
+      "native_duration_seconds": 0,
+      "preserve_native_timing": true
+    }
+  ],
+  "shots": [
+    {
+      "id": "SHOT_010",
+      "start_seconds": 0,
+      "end_seconds": 10,
+      "dramatic_job": "Reveal the load-bearing relationship between Ferravine's exterior, tendon chassis, nerve mesh, and mechanical frame.",
+      "motion_carriers": ["layer", "light", "editorial hold"],
+      "asset_ids": ["ferravine-layer-peel-master-v1"],
+      "accessibility": {"visual_information_needing_description": true}
+    }
+  ],
+  "evidence": {
+    "renderer_source": "app/ferravine/ferravine-lab.tsx",
+    "dependency_lock": "package-lock.json",
+    "master_render": null,
+    "review_render": null,
+    "captions": null,
+    "audio_description": "public/specimens/ferravine-layer-peel/descriptive-transcript.txt",
+    "watchdown_status": "not-run"
+  }
+}
