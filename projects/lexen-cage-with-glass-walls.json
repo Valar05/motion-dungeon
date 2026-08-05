@@ -1,0 +1,155 @@
+{
+  "$schema": "https://motion-dungeon.local/schemas/scene-document-v1.json",
+  "version": 1,
+  "id": "lexen-cage-with-glass-walls",
+  "title": "THE CAGE WITH GLASS WALLS",
+  "character": "Lexen Vigil",
+  "status": {
+    "sourceCanon": "governing",
+    "performance": "accepted",
+    "motionDungeonImplementation": "implemented",
+    "motionDungeonArtisticAcceptance": "pending Drew review"
+  },
+  "source": {
+    "provider": "google-drive",
+    "fileId": "164q6UUkD3npFCoyxm6SUSubv_7WE6hKbovXqVG7aP6A",
+    "documentTitle": "Holding Vigil - Revised and Improved",
+    "sectionTitle": "THE CAGE WITH GLASS WALLS",
+    "revisionId": "1439",
+    "modifiedTime": "2025-11-21T11:40:56.676Z",
+    "url": "https://docs.google.com/document/d/164q6UUkD3npFCoyxm6SUSubv_7WE6hKbovXqVG7aP6A/edit"
+  },
+  "media": {
+    "provider": "google-drive",
+    "fileId": "1XEna1MyvkLhAyI4tfG6p6mPNsF6uAvdT",
+    "sourceName": "lexen-cage-with-me-candidate-008.mp4",
+    "path": "/specimens/lexen-cage-with-glass-walls/lexen-cage-with-me-candidate-008.mp4",
+    "captionsPath": "/specimens/lexen-cage-with-glass-walls/lexen-cage-with-me-candidate-008.en.vtt",
+    "durationSeconds": 2.75,
+    "width": 1080,
+    "height": 1920,
+    "frameRate": 24,
+    "videoCodec": "h264",
+    "audioCodec": "aac",
+    "bytes": 1589248,
+    "md5": "7fddd7f15d27d2417d60a57ff621c316",
+    "sha256": "f596fd383963df3cbaec891334af37a2ebe3864fba1dcba0225401ed5eb7bafa",
+    "sourceUrl": "https://drive.google.com/file/d/1XEna1MyvkLhAyI4tfG6p6mPNsF6uAvdT/view"
+  },
+  "scene": {
+    "slugline": "INT. BOARDROOM – PARADISE PENITENTIARY COMPLEX",
+    "premise": "Paradise calls catastrophe property loss; Lexen forces the room to name children, pain, hunger, and the cost of being real.",
+    "setting": [
+      "Glass walls",
+      "Steel floor",
+      "Clinical air",
+      "Split heavy bag bleeding sand",
+      "Artificial feeds surrounding the only unmanufactured presence"
+    ],
+    "beats": [
+      {
+        "id": "abstract",
+        "label": "Paradise abstracts",
+        "action": "Executives itemize a destroyed orbital facility, two hundred staff deaths, lost AI frameworks, and stolen children as institutional liabilities."
+      },
+      {
+        "id": "concrete",
+        "label": "Lexen makes it concrete",
+        "action": "Lexen names the children, simulated sweetness, dirt, hunger, pain, and the price of waking."
+      },
+      {
+        "id": "reversal",
+        "label": "The enclosure reverses",
+        "action": "Lexen rejects the executives’ assumption that the glass contains him."
+      },
+      {
+        "id": "blackout",
+        "label": "Control fails",
+        "action": "The bag swings, lights and feeds die, holograms vanish, and glass breaks."
+      }
+    ],
+    "dialogue": [
+      {
+        "speaker": "Chairman",
+        "text": "We’re here to discuss the destruction of property. The orbital facility designated Paradise Vault. The deaths of two hundred staff. The loss of critical AI frameworks and—"
+      },
+      {
+        "speaker": "Executive",
+        "text": "You stole children—"
+      },
+      {
+        "speaker": "Lexen",
+        "text": "I saved them. From you. From your simulations. From your perfect little dreams."
+      },
+      {
+        "speaker": "Lexen",
+        "text": "You think I’m trapped in here."
+      },
+      {
+        "speaker": "Lexen",
+        "text": "You’re wrong."
+      },
+      {
+        "speaker": "Lexen",
+        "text": "You’re in the cage with me."
+      },
+      {
+        "speaker": "Lexen",
+        "text": "And you tapped out before the fight even started."
+      }
+    ],
+    "artifactExcerpt": {
+      "startSeconds": 0,
+      "endSeconds": 2.75,
+      "speaker": "Lexen",
+      "text": "You’re in the cage with me."
+    }
+  },
+  "performance": {
+    "take": 8,
+    "verdict": "Perfect!",
+    "acceptedLine": "You’re in the cage with me.",
+    "acceptedProperties": [
+      "The lip-sync timing in take 8",
+      "The final mouth close",
+      "The existing sound and picture relationship"
+    ],
+    "prohibitedChanges": [
+      "No retiming",
+      "No regenerated acting",
+      "No broad smoothing",
+      "No interpolation over accepted performance keys"
+    ]
+  },
+  "motion": {
+    "mode": "source-locked playback",
+    "principle": "The accepted keys own the performance. Motion Dungeon carries the artifact without repainting it.",
+    "reducedMotion": "Playback never autostarts; reduced-motion mode keeps the source paused until an explicit play command."
+  },
+  "acceptance": {
+    "sourceCanon": {
+      "owner": "Drew",
+      "state": "governing"
+    },
+    "take8Performance": {
+      "owner": "Drew",
+      "state": "accepted"
+    },
+    "motionDungeonImplementation": {
+      "owner": "Adam",
+      "state": "implemented"
+    },
+    "motionDungeonArtisticAcceptance": {
+      "owner": "Drew",
+      "state": "pending"
+    }
+  },
+  "rights": {
+    "authority": "Drew",
+    "stateOwner": "Adam",
+    "delivery": "A source-locked carrier may be built and published. Artistic acceptance remains Drew’s decision."
+  },
+  "extensionData": {
+    "roundTripProof": "This deliberately unknown field must survive local load, edit, and save operations."
+  }
+}

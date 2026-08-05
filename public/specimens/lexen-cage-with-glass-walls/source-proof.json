@@ -1,0 +1,18 @@
+{
+  "sourceFileId": "1XEna1MyvkLhAyI4tfG6p6mPNsF6uAvdT",
+  "sourceFileName": "lexen-cage-with-me-candidate-008.mp4",
+  "bytes": 1589248,
+  "md5": "7fddd7f15d27d2417d60a57ff621c316",
+  "sha256": "f596fd383963df3cbaec891334af37a2ebe3864fba1dcba0225401ed5eb7bafa",
+  "containerDurationSeconds": 2.75,
+  "video": {
+    "codec": "h264",
+    "width": 1080,
+    "height": 1920,
+    "frameRate": 24
+  },
+  "audio": {
+    "codec": "aac"
+  },
+  "verification": "Exact byte count and MD5 match the Google Drive source. SHA-256 was computed after authenticated readback."
+}
