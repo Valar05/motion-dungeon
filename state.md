@@ -88,6 +88,8 @@ unknown fields, and keeps sharing and local export functional.
 
 ## Recent Delta
 
+- 2026-08-04: Added the candidate `/sherman` Model Lab and `projects/sherman-tank-lab.json`. The lab provides a license-clean procedural M4 silhouette, local Three.js orbit/wireframe/grid/turret/exploded controls, browser-memory GLB intake, topology metrics, provenance gating, unknown-field-preserving scene JSON round trips, a harvested-candidate board, a Meshy comparison protocol, and a hardware-bounded local-model ruling. No harvested or generated mesh is promoted, no Meshy credits were spent, and artistic or historical-accuracy acceptance remains pending.
+
 - 2026-08-04: Added the candidate scene `projects/venice-drew-reunion.json` and a signed-in `/venice` carrier. The scene preserves third-person dialogue, Adam's dry narrator register, and Venice's authorship, consent, truth, pause, and stop rights. Implemented truth is text, a reactive browser portrait, typed or browser-recognized invitations, optional browser speech synthesis, and an immediate local stop control. Camera video, a verified live human performance, an accepted Venice voice identity, and canon promotion are not claimed.
 
 - 2026-08-03: Drew selected source + credit. Replaced MIT for future releases with AGPL-3.0-or-later for software, CC BY-SA 4.0 for original scene manifests/documentation, a project identity policy, and visible in-product attribution. Earlier MIT grants remain valid.

@@ -1,0 +1,25 @@
+{
+  "schema": "motion-dungeon.scene/1",
+  "id": "sherman-tank-lab",
+  "title": "M4 Sherman · procedural study",
+  "status": "candidate",
+  "source": {
+    "kind": "procedural",
+    "label": "Motion Dungeon baseline",
+    "license": "CC BY-SA 4.0"
+  },
+  "viewer": {
+    "background": "#090c0a",
+    "autoRotate": true,
+    "wireframe": false,
+    "grid": true,
+    "turretYaw": -8,
+    "exploded": 0
+  },
+  "acceptance": {
+    "artistic": false,
+    "historicalAccuracy": false,
+    "externalAssetPromotion": false
+  },
+  "unknownFieldPolicy": "preserve"
+}
