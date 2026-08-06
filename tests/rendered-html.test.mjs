@@ -19,6 +19,25 @@ test("renders the browser-only Sherman model lab shell", async () => {
   assert.match(html, /Loading the browser renderer/i);
 });
 
+test("renders the Ferravine vivisection motion lab", async () => {
+  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
+  workerUrl.searchParams.set("test", `ferravine-${process.pid}-${Date.now()}`);
+  const {default: worker} = await import(workerUrl.href);
+
+  const response = await worker.fetch(
+    new Request("http://localhost/ferravine", {headers: {accept: "text/html"}}),
+    {ASSETS: {fetch: async () => new Response("Not found", {status: 404})}},
+    {waitUntil() {}, passThroughOnException() {}},
+  );
+
+  assert.equal(response.status, 200);
+  assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
+  const html = await response.text();
+  assert.match(html, /Ferravine/i);
+  assert.match(html, /Vivisection/i);
+  assert.match(html, /Peel spread/i);
+});
+
 test("renders the source-locked Lexen cage carrier", async () => {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
   workerUrl.searchParams.set("lexen-test", `${process.pid}-${Date.now()}`);

@@ -1,0 +1,27 @@
+{
+  "schema": "motion-dungeon.scene/1",
+  "id": "ferravine-layer-peel",
+  "title": "Ferravine · layer-peel vivisection",
+  "status": "candidate",
+  "route": "/ferravine",
+  "durationSeconds": 10,
+  "fps": 30,
+  "motionPremise": "Ferravine holds one road-facing body until the shell spends the scene revealing the systems that let the Highlander-shaped organism carry load, signal, and motion.",
+  "source": {
+    "kind": "generated-still-atlas",
+    "path": "/specimens/ferravine-layer-peel/Ferravine_Layer_Peel_Master_v1.png",
+    "sha256": "d286b050b3cf9a9ba19aca24c72945c34c78473a272ed6cdddd02e64ca5f9472",
+    "width": 1536,
+    "height": 1024,
+    "approval": "candidate-unreviewed"
+  },
+  "layers": [
+    {"id": "shell", "label": "Living armor", "sourceBand": [0, 37]},
+    {"id": "fascia", "label": "Tendon chassis", "sourceBand": [25, 57]},
+    {"id": "nerve", "label": "Nerve lattice", "sourceBand": [44, 74]},
+    {"id": "frame", "label": "Highlander skeleton", "sourceBand": [61, 100]}
+  ],
+  "controls": ["timeline", "peelSpread", "layerVisibility", "nervePulse", "labels", "inspectMaster"],
+  "truthLock": "Time-addressable crops from one generated master; not transparent alpha plates and not accepted vehicle canon.",
+  "unknownFieldPolicy": "preserve"
+}
