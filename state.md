@@ -27,11 +27,11 @@ remain a local export target with easy sharing, not the source of truth.
   treatment; six-phase timeline; scrubbing; parameter controls; URL state;
   WebCodecs H.264 export; child scenes; and one source-locked, editable scene
   document carrier that round-trips unknown JSON fields.
-- Tested: version 22 passed a production vinext build, rendered-route tests for
+- Tested: version 23 passed a production vinext build, rendered-route tests for
   Sherman, Ferravine, and Lexen, targeted lint, and post-deployment MP4 hash
   readback.
 - Deployed: Sites project `appgprj_6a6fe6095fac819198afe94918813883`,
-  version 22, at https://motion-dungeon.dclarke1005.chatgpt.site.
+  version 23, at https://motion-dungeon.dclarke1005.chatgpt.site.
 - Callable: public browser URL is live.
 - Delivered: public GitHub source and the Home Center project hub survived
   readback on 2026-08-02. The hub contains the state pointer, Children index,
@@ -76,8 +76,8 @@ into a shared child-scene schema without retiming or regenerating take 8.
 - Home Center project hub:
   https://drive.google.com/drive/folders/1PYHXkNIX7imDcOGPzWv-b4hRSaKZ8I-m
 - Sites project: `appgprj_6a6fe6095fac819198afe94918813883`
-- Live version: 22
-- Live source commit: `5cd533ed84820eff48f1a3e423b92418b3778223`
+- Live version: 23
+- Live source commit: `8d44697a16f54ac9b8ee9cc6cac0850beff95212`
 - Live source commit before repository promotion:
   `2c3b344df0a1c9ef73839efcb312a74dc684fde5`
 - Live source archive SHA-256:
