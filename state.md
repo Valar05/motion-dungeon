@@ -9,7 +9,7 @@ Human Risk: MINIMAL
 Authority: Drew Clarke
 State Owner: Adam
 Authoritative Home: https://github.com/Valar05/motion-dungeon/blob/main/state.md
-Updated: 2026-08-03
+Updated: 2026-08-05
 License: AGPL-3.0-or-later for software; CC BY-SA 4.0 for original scene manifests and documentation; third-party materials retain their own licenses
 
 ## Commission
@@ -25,12 +25,13 @@ remain a local export target with easy sharing, not the source of truth.
   child scene projects.
 - Implemented: live WebGL scene; shader material; particles; rings; fog; scanline
   treatment; six-phase timeline; scrubbing; parameter controls; URL state;
-  WebCodecs H.264 export; three initial child scenes.
-- Tested: version 3 served successfully after browser-only dynamic loading fixed
-  Cloudflare Worker module-startup failure. Repository validation remains tied to
-  the checked-in test scripts.
+  WebCodecs H.264 export; child scenes; and one source-locked, editable scene
+  document carrier that round-trips unknown JSON fields.
+- Tested: version 22 passed a production vinext build, rendered-route tests for
+  Sherman, Ferravine, and Lexen, targeted lint, and post-deployment MP4 hash
+  readback.
 - Deployed: Sites project `appgprj_6a6fe6095fac819198afe94918813883`,
-  version 3, at https://motion-dungeon.dclarke1005.chatgpt.site.
+  version 22, at https://motion-dungeon.dclarke1005.chatgpt.site.
 - Callable: public browser URL is live.
 - Delivered: public GitHub source and the Home Center project hub survived
   readback on 2026-08-02. The hub contains the state pointer, Children index,
@@ -58,13 +59,15 @@ remain a local export target with easy sharing, not the source of truth.
 
 ## Active Gate
 
-Promote child manifests from candidate presets into fully editable, savable scene
-documents without collapsing their identity back into hard-coded buttons.
+Hold Lexen's accepted take 8 picture, sound, timing, and final mouth close fixed
+while Drew reviews Motion Dungeon's scene-carrier presentation. Generalization
+must not erase child identity or imply artistic acceptance.
 
 ## Next Authorized Action
 
-Add a small scene-document loader/editor that round-trips child JSON, preserves
-unknown fields, and keeps sharing and local export functional.
+Drew reviews `/scenes/lexen-cage-with-glass-walls` against the accepted source
+artifact. After that review, Adam may promote the proven loader/editor pattern
+into a shared child-scene schema without retiming or regenerating take 8.
 
 ## Evidence Pointers
 
@@ -73,7 +76,8 @@ unknown fields, and keeps sharing and local export functional.
 - Home Center project hub:
   https://drive.google.com/drive/folders/1PYHXkNIX7imDcOGPzWv-b4hRSaKZ8I-m
 - Sites project: `appgprj_6a6fe6095fac819198afe94918813883`
-- Live version: 3
+- Live version: 22
+- Live source commit: `5cd533ed84820eff48f1a3e423b92418b3778223`
 - Live source commit before repository promotion:
   `2c3b344df0a1c9ef73839efcb312a74dc684fde5`
 - Live source archive SHA-256:
@@ -87,6 +91,19 @@ unknown fields, and keeps sharing and local export functional.
   authenticated durable backend.
 
 ## Recent Delta
+
+- 2026-08-05: Added `projects/lexen-cage-with-glass-walls.json` and the standalone
+  `/scenes/lexen-cage-with-glass-walls` carrier from the governing section in
+  **Holding Vigil - Revised and Improved**, Drive file
+  `164q6UUkD3npFCoyxm6SUSubv_7WE6hKbovXqVG7aP6A`, revision `1439`. The carrier
+  plays accepted take 8 unchanged, adds synchronized captions, explicit play,
+  stop, audio, and reduced-motion controls, and exposes a complete local JSON
+  load/edit/save round trip that preserves unknown fields. The deployed MP4
+  readback matched 1,589,248 bytes, MD5
+  `7fddd7f15d27d2417d60a57ff621c316`, and SHA-256
+  `f596fd383963df3cbaec891334af37a2ebe3864fba1dcba0225401ed5eb7bafa`.
+  Source canon is governing; take 8 performance is accepted; Motion Dungeon
+  implementation is complete; Drew's artistic acceptance remains pending.
 
 - 2026-08-05: Added the candidate `/ferravine` vivisection child scene from
   `Ferravine_Layer_Peel_Master_v1.png` (1536 × 1024, SHA-256
