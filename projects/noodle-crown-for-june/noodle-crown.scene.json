@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "motion-dungeon.scene.v1",
+  "id": "noodle-crown-for-june",
+  "title": "Noodle Crown — for June",
+  "authority": "Drew Clarke",
+  "recipient": "June",
+  "runtimeSeconds": 24.5,
+  "fps": 24,
+  "resolution": [1280, 720],
+  "dramaticTurn": "A hurtful label is neither denied nor allowed to own the strands; inherited cold becomes self-chosen heat.",
+  "lineage": {
+    "hurtfulArtifact": "noodles",
+    "alonArtifact": "Stay frosty",
+    "successor": "thermogenic filament curls / fire crown",
+    "releaseLine": "June. Stay lit."
+  },
+  "beats": [
+    {"start": 0.0, "end": 3.88, "job": "name the wound without explaining June"},
+    {"start": 4.53, "end": 7.85, "job": "establish Alon's ice-dragon artifact"},
+    {"start": 8.50, "end": 12.26, "job": "break cold's claim to the whole story"},
+    {"start": 12.91, "end": 19.35, "job": "let each filament choose and carry heat"},
+    {"start": 20.0, "end": 24.5, "job": "give June the crown and release the image"}
+  ],
+  "accessibility": {
+    "captions": "separate timed SRT",
+    "audioDescription": "narration is written to carry the transformation; separate visual description transcript included",
+    "lowVision": "high-contrast symbolic silhouettes and large thematic title cards",
+    "burnedCaptions": false
+  },
+  "truth": {
+    "juneVoiceImpersonation": false,
+    "identityPortrait": false,
+    "generatedNarratorIsJune": false,
+    "artisticAcceptance": "unreviewed"
+  }
+}
