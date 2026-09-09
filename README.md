@@ -4,6 +4,17 @@
 
 Live editor: https://motion-dungeon.dclarke1005.chatgpt.site
 
+## Direction authority
+
+Motion Dungeon is a compiler/studio, not the owner of general animation judgment.
+
+Canonical direction doctrine lives at:
+
+- `Valar05/home-center/skills/motion-direction/SKILL.md`
+- this repository's adapter: `MOTION_DIRECTION.md`
+
+Key consequence: a performance reference may provide poses/contact without owning timing. Pose master, direction profile, visual canon, contact map, and quarantine ledger stay separable. Motion Dungeon may tween, retime, add lag/overshoot, or change camera behavior when the direction profile calls for it; it may not invent canonical art, carry stale props forward, or reuse quarantined imagery.
+
 ## Current capabilities
 
 - live Three.js/WebGL viewport
