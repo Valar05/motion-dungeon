@@ -1,0 +1,55 @@
+{
+  "format": "noodle-vector-pose-master-v1",
+  "source_reference": "825026.mp4",
+  "meaning": "first-person right-arm load-bearing extension/return",
+  "timing_policy": "source video contributes poses only; timing is authored by direction profile",
+  "poses": {
+    "NEAR": {
+      "wrist": [492, 500],
+      "elbow": [608, 742],
+      "shoulder": [742, 1188],
+      "handScale": 1.18,
+      "handRot": 10,
+      "propRot": -19,
+      "propScale": 1.03,
+      "farHand": 0.0
+    },
+    "PASS": {
+      "wrist": [460, 421],
+      "elbow": [585, 686],
+      "shoulder": [744, 1190],
+      "handScale": 0.94,
+      "handRot": -5,
+      "propRot": -25,
+      "propScale": 0.94,
+      "farHand": 0.34
+    },
+    "FAR": {
+      "wrist": [386, 338],
+      "elbow": [548, 607],
+      "shoulder": [746, 1194],
+      "handScale": 0.72,
+      "handRot": -18,
+      "propRot": -31,
+      "propScale": 0.82,
+      "farHand": 1.0
+    },
+    "RETURN": {
+      "wrist": [507, 512],
+      "elbow": [614, 749],
+      "shoulder": [742, 1188],
+      "handScale": 1.22,
+      "handRot": 13,
+      "propRot": -16,
+      "propScale": 1.05,
+      "farHand": 0.0
+    }
+  },
+  "contact": {
+    "hand_prop_socket": "shaft passes through closed fist at wrist origin",
+    "prop_owner": "animation solver",
+    "load_rule": "prop may lag/overshoot wrist transform but may not break grip contact"
+  },
+  "replaceable_regions": ["hand_near", "hand_far"],
+  "continuous_regions": ["forearm", "wrist_transform", "shovel_transform"]
+}
