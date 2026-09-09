@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no" />
+<title>Noodle Vector — First-Person Arm / Pose-Directed v1</title>
+<style>
+  :root{color-scheme:dark;--bg:#07101a;--ink:#07111f;--gold:#ffd45d;--cyan:#55bde8;--coral:#f57a2a;--ivory:#fff8d8;--muted:#9ba9b7}
+  *{box-sizing:border-box}
+  html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#05080d;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}
+  #stage{position:fixed;inset:0;background:radial-gradient(circle at 46% 34%,#12243a 0%,#08121e 46%,#05070b 100%);touch-action:manipulation}
+  svg{width:100%;height:100%;display:block}
+  #hud{position:absolute;z-index:3;left:max(12px,env(safe-area-inset-left));right:max(12px,env(safe-area-inset-right));bottom:max(12px,env(safe-area-inset-bottom));display:flex;gap:8px;align-items:center;pointer-events:auto}
+  button{min-height:46px;border:1px solid rgba(183,211,236,.27);background:rgba(7,13,22,.78);backdrop-filter:blur(12px);color:#f7eedf;border-radius:14px;padding:0 16px;font-weight:800;letter-spacing:.02em}
+  button[aria-pressed="true"]{background:#f7eedf;color:#11151d}
+  #status{margin-left:auto;max-width:52vw;text-align:right;color:#c8d4de;font-size:11px;line-height:1.25;letter-spacing:.08em;text-transform:uppercase;text-shadow:0 1px 8px #000}
+  #sig{position:absolute;left:16px;top:max(14px,env(safe-area-inset-top));z-index:2;pointer-events:none;color:#f6ddbf;font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.78}
+  #sig b{color:#83d7f1;font-weight:850}
+  @media (prefers-reduced-motion:reduce){#status::after{content:" · reduced motion"}}
+</style>
+</head>
+<body>
+<main id="stage" aria-label="First-person right arm vector animation">
+  <div id="sig"><b>VECTOR NOODLE</b> · FP ARM 001</div>
+  <svg id="scene" viewBox="0 0 720 1280" preserveAspectRatio="xMidYMid slice" role="img" aria-label="A complete first-person right arm drives a clenched fist away from camera and recoils. No prop is present.">
+    <defs>
+      <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+        <stop stop-color="#071a2c"/><stop offset=".55" stop-color="#10233a"/><stop offset="1" stop-color="#31100f"/>
+      </linearGradient>
+      <linearGradient id="flesh" x1="0" y1="0" x2="1" y2="1">
+        <stop stop-color="#a75942"/><stop offset=".36" stop-color="#7b4037"/><stop offset=".72" stop-color="#4c2928"/><stop offset="1" stop-color="#251722"/>
+      </linearGradient>
+      <linearGradient id="fleshHi" x1="0" y1="0" x2="1" y2="1">
+        <stop stop-color="#e5a68f"/><stop offset=".4" stop-color="#b86f5b"/><stop offset="1" stop-color="#713f33"/>
+      </linearGradient>
+      <linearGradient id="ceramic" x1="0" y1="0" x2="1" y2="1">
+        <stop stop-color="#fff8df"/><stop offset=".48" stop-color="#d8d0bf"/><stop offset="1" stop-color="#8ea9b6"/>
+      </linearGradient>
+      <linearGradient id="heat" x1="0" y1="1" x2="0" y2="0">
+        <stop stop-color="#55bde8"/><stop offset=".42" stop-color="#f57a2a"/><stop offset=".82" stop-color="#ffd45d"/><stop offset="1" stop-color="#fff8d8"/>
+      </linearGradient>
+      <radialGradient id="palmHeat" cx="38%" cy="26%" r="76%">
+        <stop stop-color="#ffd8bf"/><stop offset=".42" stop-color="#b96956"/><stop offset="1" stop-color="#42212a"/>
+      </radialGradient>
+      <filter id="glow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="8"/></filter>
+      <filter id="smallglow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="3"/></filter>
+      <filter id="shadow" x="-40%" y="-40%" width="180%" height="180%"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".48"/></filter>
+    </defs>
+
+    <rect width="720" height="1280" fill="url(#bg)"/>
+    <ellipse id="auraWarm" cx="355" cy="560" rx="280" ry="300" fill="#ff7b2d" opacity=".045"/>
+    <ellipse id="auraCold" cx="375" cy="545" rx="210" ry="230" fill="#4fc6ff" opacity=".04"/>
+
+    <path id="shadowArm" fill="#02050a" opacity=".55" filter="url(#shadow)"/>
+
+    <g id="arm">
+      <path id="upperArm" fill="url(#flesh)" stroke="#080d18" stroke-width="15" stroke-linejoin="round"/>
+      <path id="upperPlane" fill="url(#fleshHi)" opacity=".28"/>
+      <path id="elbowCap" fill="#5b302f" stroke="#0b1422" stroke-width="11"/>
+      <path id="foreArm" fill="url(#flesh)" stroke="#080d18" stroke-width="15" stroke-linejoin="round"/>
+      <path id="forePlane" fill="url(#fleshHi)" opacity=".34"/>
+      <path id="ceramicSheath" fill="url(#ceramic)" opacity=".9" stroke="#10243a" stroke-width="7"/>
+      <path id="sheathSeam" fill="none" stroke="#56c1df" stroke-width="4" opacity=".85" stroke-linecap="round"/>
+      <path id="tendonGlow" fill="none" stroke="#ff7a28" stroke-width="26" opacity=".18" stroke-linecap="round" filter="url(#glow)"/>
+      <path id="tendonInk" fill="none" stroke="#0b1830" stroke-width="23" stroke-linecap="round" stroke-linejoin="round"/>
+      <path id="tendonHeat" fill="none" stroke="url(#heat)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+      <path id="tendonGlint" fill="none" stroke="#fff3c6" stroke-width="2.5" opacity=".82" stroke-linecap="round"/>
+    </g>
+
+    <g id="hand" filter="url(#shadow)">
+      <path id="palm" d="M-42 37 C-54 18 -52 -13 -44 -35 C-37 -55 -22 -68 0 -70 C21 -72 36 -61 42 -44 C52 -43 60 -31 59 -17 C68 -10 70 5 64 17 C70 26 68 42 57 51 C49 65 30 75 10 73 C-12 73 -31 59 -42 37 Z" fill="url(#palmHeat)" stroke="#09111c" stroke-width="10" stroke-linejoin="round"/>
+      <path d="M-30 -28 C-18 -46 -1 -54 17 -48 C30 -43 36 -32 35 -20 C24 -28 7 -30 -7 -24 C-18 -20 -26 -12 -30 -2 Z" fill="#d28b76" opacity=".6"/>
+      <path d="M-33 -27 C-23 -42 -10 -50 5 -50" fill="none" stroke="#fff0d5" stroke-width="3" opacity=".62" stroke-linecap="round"/>
+      <path d="M-36 -20 C-30 -37 -18 -45 -5 -43 C5 -41 10 -32 8 -22 C4 -12 -6 -7 -16 -10 C-26 -12 -33 -15 -36 -20 Z" fill="#9d574a" stroke="#351b25" stroke-width="4"/>
+      <path d="M-8 -28 C-2 -45 10 -52 23 -48 C34 -45 38 -35 34 -25 C30 -15 20 -10 10 -13 C0 -15 -5 -21 -8 -28 Z" fill="#aa6253" stroke="#351b25" stroke-width="4"/>
+      <path d="M20 -21 C26 -37 38 -42 48 -36 C58 -31 59 -21 54 -12 C49 -3 39 1 31 -3 C23 -7 19 -14 20 -21 Z" fill="#945044" stroke="#351b25" stroke-width="4"/>
+      <path d="M39 0 C48 -10 60 -8 66 1 C72 10 69 21 61 28 C53 34 43 31 38 23 C34 16 34 7 39 0 Z" fill="#87453e" stroke="#351b25" stroke-width="4"/>
+      <path id="thumb" d="M-31 16 C-13 5 6 6 21 15 C31 21 35 32 28 40 C20 49 5 47 -6 42 C-17 37 -28 31 -36 28 Z" fill="#bd735f" stroke="#351b25" stroke-width="6"/>
+      <path d="M-20 19 C-8 16 4 18 13 23" fill="none" stroke="#f0b19b" stroke-width="3" opacity=".72" stroke-linecap="round"/>
+      <path d="M-41 47 C-23 58 11 63 35 50 L32 66 C8 79 -24 74 -45 59 Z" fill="url(#ceramic)" stroke="#10243a" stroke-width="5" opacity=".94"/>
+      <path d="M-37 52 C-12 65 13 65 31 56" fill="none" stroke="#55bde8" stroke-width="3" opacity=".78"/>
+      <path d="M-31 33 C-12 25 -2 11 3 -7 C8 -23 17 -35 30 -39" fill="none" stroke="#0b1830" stroke-width="14" stroke-linecap="round"/>
+      <path d="M-31 33 C-12 25 -2 11 3 -7 C8 -23 17 -35 30 -39" fill="none" stroke="url(#heat)" stroke-width="6.5" stroke-linecap="round"/>
+      <circle cx="30" cy="-39" r="4.5" fill="#fff8d8" filter="url(#smallglow)"/>
+    </g>
+
+    <g id="poseGhosts" opacity="0" pointer-events="none"></g>
+  </svg>
+
+  <div id="hud" aria-label="Animation controls">
+    <button id="replay" type="button">Replay</button>
+    <button id="loop" type="button" aria-pressed="true">Loop</button>
+    <button id="poses" type="button" aria-pressed="false">Poses</button>
+    <div id="status">video → poses · authored direction · no prop</div>
+  </div>
+</main>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const els = {
+    upper:$('upperArm'), upperPlane:$('upperPlane'), elbow:$('elbowCap'), fore:$('foreArm'), forePlane:$('forePlane'),
+    sheath:$('ceramicSheath'), seam:$('sheathSeam'), tendonGlow:$('tendonGlow'), tendonInk:$('tendonInk'), tendonHeat:$('tendonHeat'), tendonGlint:$('tendonGlint'),
+    hand:$('hand'), shadow:$('shadowArm'), warm:$('auraWarm'), cold:$('auraCold'), ghosts:$('poseGhosts')
+  };
+
+  const poses = [
+    {name:'NEAR_GUARD',    root:[760,1225], elbow:[620,1030], wrist:[470,760], hand:[445,690], handScale:1.46, handRot:-7, roll:1.00, widths:[92,78,70,48]},
+    {name:'COIL',          root:[760,1225], elbow:[630,1044], wrist:[492,790], hand:[468,720], handScale:1.50, handRot:-3, roll:0.96, widths:[94,80,71,49]},
+    {name:'DRIVE',         root:[760,1225], elbow:[600,982],  wrist:[400,610], hand:[378,542], handScale:1.08, handRot:-13,roll:0.86, widths:[91,72,58,39]},
+    {name:'FAR_EXTENSION', root:[760,1225], elbow:[555,875],  wrist:[332,470], hand:[315,404], handScale:0.86, handRot:-18,roll:0.72, widths:[88,65,46,31]},
+    {name:'OVERREACH',     root:[760,1225], elbow:[545,856],  wrist:[309,440], hand:[291,372], handScale:0.82, handRot:-20,roll:0.68, widths:[87,63,43,29]},
+    {name:'RECOIL',        root:[760,1225], elbow:[585,948],  wrist:[392,604], hand:[369,535], handScale:1.06, handRot:-10,roll:0.86, widths:[90,71,57,38]},
+    {name:'RETURN',        root:[760,1225], elbow:[616,1018], wrist:[458,744], hand:[435,675], handScale:1.40, handRot:-7, roll:0.98, widths:[92,77,68,47]}
+  ];
+
+  const keys = [
+    {t:0,    p:0, ease:'hold'},
+    {t:150,  p:0, ease:'hold'},
+    {t:255,  p:1, ease:'out'},
+    {t:470,  p:3, ease:'inout'},
+    {t:545,  p:4, ease:'out'},
+    {t:690,  p:5, ease:'in'},
+    {t:910,  p:6, ease:'out'},
+    {t:1010, p:0, ease:'out'},
+    {t:1260, p:0, ease:'hold'}
+  ];
+  const duration = keys[keys.length-1].t;
+
+  const lerp=(a,b,t)=>a+(b-a)*t;
+  const vlerp=(a,b,t)=>[lerp(a[0],b[0],t),lerp(a[1],b[1],t)];
+  const ease={
+    hold:t=>0,
+    in:t=>t*t*t,
+    out:t=>1-Math.pow(1-t,3),
+    inout:t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2
+  };
+  const mixPose=(a,b,t)=>({
+    root:vlerp(a.root,b.root,t), elbow:vlerp(a.elbow,b.elbow,t), wrist:vlerp(a.wrist,b.wrist,t), hand:vlerp(a.hand,b.hand,t),
+    handScale:lerp(a.handScale,b.handScale,t), handRot:lerp(a.handRot,b.handRot,t), roll:lerp(a.roll,b.roll,t),
+    widths:a.widths.map((v,i)=>lerp(v,b.widths[i],t))
+  });
+
+  function normal(a,b){const dx=b[0]-a[0],dy=b[1]-a[1],d=Math.hypot(dx,dy)||1;return[-dy/d,dx/d]}
+  function point(p,n,d){return[p[0]+n[0]*d,p[1]+n[1]*d]}
+  function fmt(p){return p[0].toFixed(1)+' '+p[1].toFixed(1)}
+  function segmentPath(a,b,wa,wb,bend=0){
+    const n=normal(a,b);
+    const q=[(a[0]+b[0])/2+n[0]*bend,(a[1]+b[1])/2+n[1]*bend];
+    const aL=point(a,n,wa), aR=point(a,n,-wa), bL=point(b,n,wb), bR=point(b,n,-wb);
+    const qL=point(q,n,(wa+wb)*.25), qR=point(q,n,-(wa+wb)*.25);
+    return `M${fmt(aL)} Q${fmt(qL)} ${fmt(bL)} Q${fmt(bR)} ${fmt(qR)} Q${fmt(aR)} ${fmt(aL)} Z`;
+  }
+  function innerPlane(a,b,wa,wb,side=.45){
+    const n=normal(a,b), q=[lerp(a[0],b[0],.52),lerp(a[1],b[1],.52)];
+    const p1=point(a,n,wa*side), p2=point(q,n,wa*.2), p3=point(b,n,wb*.18);
+    const p4=point(b,n,-wb*.26), p5=point(q,n,-wa*.02), p6=point(a,n,wa*.16);
+    return `M${fmt(p1)} Q${fmt(p2)} ${fmt(p3)} L${fmt(p4)} Q${fmt(p5)} ${fmt(p6)} Z`;
+  }
+  function centerCurve(root,elbow,wrist,hand){
+    return `M${fmt(root)} C${(root[0]*.55+elbow[0]*.45).toFixed(1)} ${(root[1]*.55+elbow[1]*.45).toFixed(1)}, ${elbow[0].toFixed(1)} ${elbow[1].toFixed(1)}, ${fmt(elbow)} S${wrist[0].toFixed(1)} ${wrist[1].toFixed(1)} ${fmt(hand)}`;
+  }
+
+  function render(p){
+    const [uw0,uw1,fw0,fw1]=p.widths;
+    const upper=segmentPath(p.root,p.elbow,uw0,uw1,-14*p.roll);
+    const fore=segmentPath(p.elbow,p.wrist,fw0,fw1,18*p.roll);
+    els.upper.setAttribute('d',upper); els.fore.setAttribute('d',fore);
+    els.shadow.setAttribute('d',upper+' '+fore);
+    els.upperPlane.setAttribute('d',innerPlane(p.root,p.elbow,uw0,uw1,.55));
+    els.forePlane.setAttribute('d',innerPlane(p.elbow,p.wrist,fw0,fw1,.62));
+    els.elbow.setAttribute('d',`M${fmt([p.elbow[0]-uw1*.72,p.elbow[1]-uw1*.18])} C${fmt([p.elbow[0]-uw1*.45,p.elbow[1]-uw1*.82])} ${fmt([p.elbow[0]+uw1*.5,p.elbow[1]-uw1*.72])} ${fmt([p.elbow[0]+uw1*.72,p.elbow[1]-uw1*.06])} C${fmt([p.elbow[0]+uw1*.45,p.elbow[1]+uw1*.58])} ${fmt([p.elbow[0]-uw1*.48,p.elbow[1]+uw1*.56])} ${fmt([p.elbow[0]-uw1*.72,p.elbow[1]-uw1*.18])}Z`);
+
+    const n=normal(p.elbow,p.wrist), a=vlerp(p.elbow,p.wrist,.10), b=vlerp(p.elbow,p.wrist,.34);
+    const sw0=fw0*.58, sw1=lerp(fw0,fw1,.34)*.54;
+    els.sheath.setAttribute('d',segmentPath(a,b,sw0,sw1,5*p.roll));
+    const seamA=point(a,n,sw0*.55), seamB=point(b,n,sw1*.48);
+    els.seam.setAttribute('d',`M${fmt(seamA)} Q${fmt(vlerp(seamA,seamB,.5))} ${fmt(seamB)}`);
+
+    const line=centerCurve(vlerp(p.root,p.elbow,.17), p.elbow, p.wrist, p.hand);
+    for(const e of [els.tendonGlow,els.tendonInk,els.tendonHeat,els.tendonGlint]) e.setAttribute('d',line);
+
+    const armAngle=Math.atan2(p.hand[1]-p.wrist[1],p.hand[0]-p.wrist[0])*180/Math.PI;
+    els.hand.setAttribute('transform',`translate(${p.hand[0].toFixed(1)} ${p.hand[1].toFixed(1)}) rotate(${(armAngle+90+p.handRot).toFixed(2)}) scale(${(p.handScale*p.roll).toFixed(3)} ${p.handScale.toFixed(3)})`);
+    els.warm.setAttribute('cx',(p.hand[0]+30).toFixed(1)); els.warm.setAttribute('cy',(p.hand[1]-70).toFixed(1));
+    els.cold.setAttribute('cx',(p.wrist[0]-10).toFixed(1)); els.cold.setAttribute('cy',(p.wrist[1]-20).toFixed(1));
+  }
+
+  function poseAt(ms){
+    if(ms<=0)return poses[keys[0].p];
+    for(let i=1;i<keys.length;i++){
+      if(ms<=keys[i].t){
+        const A=keys[i-1],B=keys[i], span=Math.max(1,B.t-A.t), raw=(ms-A.t)/span;
+        const f=ease[B.ease]||ease.inout;
+        return mixPose(poses[A.p],poses[B.p],f(raw));
+      }
+    }
+    return poses[keys[keys.length-1].p];
+  }
+
+  let looping=true, playing=true, start=performance.now(), manualPose=false;
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduced){playing=false;render(poses[0]);}
+
+  function tick(now){
+    if(playing && !manualPose){
+      let t=now-start;
+      if(looping) t%=duration;
+      else if(t>=duration){t=duration;playing=false;}
+      render(poseAt(t));
+    }
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+
+  $('replay').addEventListener('click',()=>{manualPose=false;els.ghosts.setAttribute('opacity','0');$('poses').setAttribute('aria-pressed','false');start=performance.now();playing=true;});
+  $('loop').addEventListener('click',()=>{looping=!looping;$('loop').setAttribute('aria-pressed',String(looping));if(!playing){start=performance.now();playing=true;}});
+  $('poses').addEventListener('click',()=>{
+    manualPose=!manualPose;$('poses').setAttribute('aria-pressed',String(manualPose));
+    if(manualPose){playing=false;render(poses[3]);buildGhosts();els.ghosts.setAttribute('opacity','1');}
+    else{els.ghosts.setAttribute('opacity','0');start=performance.now();playing=true;}
+  });
+  $('stage').addEventListener('pointerdown',e=>{if(e.target.closest('button'))return;manualPose=false;els.ghosts.setAttribute('opacity','0');$('poses').setAttribute('aria-pressed','false');start=performance.now();playing=true;});
+
+  function buildGhosts(){
+    const chosen=[poses[0],poses[1],poses[3],poses[4],poses[6]];
+    els.ghosts.innerHTML=chosen.map((p,i)=>{
+      const line=centerCurve(p.root,p.elbow,p.wrist,p.hand);
+      return `<path d="${line}" fill="none" stroke="${i===3?'#ffd45d':'#55bde8'}" stroke-width="5" stroke-linecap="round" opacity="${i===3?'.46':'.22'}"/>`+
+             `<circle cx="${p.hand[0]}" cy="${p.hand[1]}" r="${14*p.handScale}" fill="none" stroke="${i===3?'#ffd45d':'#55bde8'}" stroke-width="3" opacity=".42"/>`;
+    }).join('');
+  }
+
+  window.__NOODLE_FP_ARM__={
+    version:'fp-arm-pose-directed-v1',
+    sourceRoles:['POSE_REFERENCE','CONTACT_REFERENCE'],
+    prop:null,
+    timingAuthority:'AUTHORED_DIRECTION_PROFILE',
+    visualLineage:'clean-noodle-vector',
+    poses:poses.map(p=>p.name),
+    replay(){manualPose=false;start=performance.now();playing=true;},
+    showPose(i=0){manualPose=true;playing=false;render(poses[Math.max(0,Math.min(poses.length-1,i))]);}
+  };
+  window.__NOODLE_FP_ARM_READY__=true;
+  render(poses[0]);
+})();
+</script>
+</body>
+</html>
